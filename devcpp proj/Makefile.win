@@ -1,0 +1,35 @@
+# Project: Tetris_Class
+# Makefile created by Dev-C++ 5.3.0.4
+
+CPP      = g++.exe -D__DEBUG__
+CC       = gcc.exe -D__DEBUG__
+WINDRES  = windres.exe
+OBJ      = ../Tetris_Class/main.o ../Tetris_Class/matrix.o ../Tetris_Class/tetris.o $(RES)
+LINKOBJ  = ../Tetris_Class/main.o ../Tetris_Class/matrix.o ../Tetris_Class/tetris.o $(RES)
+LIBS     = -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc -g3
+INCS     = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include"
+CXXINCS  = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include"
+BIN      = Tetris_Class.exe
+CXXFLAGS = $(CXXINCS)  -g3
+CFLAGS   = $(INCS)  -g3
+RM       = rm -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CPP) $(LINKOBJ) -o $(BIN) $(LIBS)
+
+../Tetris_Class/main.o: ../Tetris_Class/main.cpp
+	$(CPP) -c ../Tetris_Class/main.cpp -o ../Tetris_Class/main.o $(CXXFLAGS)
+
+../Tetris_Class/matrix.o: ../Tetris_Class/matrix.cpp
+	$(CPP) -c ../Tetris_Class/matrix.cpp -o ../Tetris_Class/matrix.o $(CXXFLAGS)
+
+../Tetris_Class/tetris.o: ../Tetris_Class/tetris.cpp
+	$(CPP) -c ../Tetris_Class/tetris.cpp -o ../Tetris_Class/tetris.o $(CXXFLAGS)
