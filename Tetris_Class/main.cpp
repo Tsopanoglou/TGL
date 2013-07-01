@@ -13,22 +13,23 @@
 using namespace std;
 using namespace tetris;
 
-// Create a tetris object
+// Create a tetris objects
 Tetris trt;
 InputPack ipack;
 OutputPack* tetris_output = NULL;
 
 void getOutput( OutputPack* opack )
 {
-	trt.externCodeTimeFactor = 10000;
-
 	if ( tetris_output == NULL )
 	{
 		tetris_output = opack ;
 	}
 
 	// Clear screen
-	system("cls");
+	if ( system("clear") )
+	{
+		system("cls");
+	}
 	
 	// Print tetris
 	printMatrix( opack->tetris , TT_NONE , ' ' );
@@ -41,7 +42,6 @@ void getOutput( OutputPack* opack )
 	{
 		printf("Deleted Rows : %d\n" , opack->numOfErasedLines );
 	}
-
 }
 
 InputPack* sendInput( void ) 
@@ -94,7 +94,6 @@ InputPack* sendInput( void )
 
 int main( void )
 {
-	
 	// Set IO functions
 	trt.IO.setInputFunction( &sendInput );
 	trt.IO.setOutputFunction( &getOutput );
